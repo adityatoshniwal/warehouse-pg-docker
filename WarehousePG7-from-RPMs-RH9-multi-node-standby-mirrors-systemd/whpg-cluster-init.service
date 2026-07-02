@@ -1,0 +1,17 @@
+[Unit]
+Description=WarehousePG cluster bootstrap (ssh key exchange + gpinitsystem/gpstart)
+After=network-online.target sshd.service
+Wants=network-online.target sshd.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+User=gpadmin
+WorkingDirectory=/home/gpadmin
+ExecStart=/home/gpadmin/cmd.sh
+TimeoutStartSec=0
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
